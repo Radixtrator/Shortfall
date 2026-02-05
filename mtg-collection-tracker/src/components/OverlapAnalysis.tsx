@@ -73,8 +73,8 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
           color="green"
         />
         <StatCard
-          label="Total Cards Needed"
-          value={analysis.overlappingCards.reduce((sum, c) => sum + c.totalNeeded, 0)}
+          label="Cards Not Owned"
+          value={analysis.overlappingCards.filter(c => c.owned === 0).length}
           color="purple"
         />
       </div>
