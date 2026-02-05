@@ -35,6 +35,30 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
     );
   }
 
+  const exportMissingCards = () => {
+    // Get all cards with shortage (includes cards not owned at all)
+    const missingCards = analysis.overlappingCards
+      .filter(c => c.shortage > 0)
+      .map(c => `${c.shortage} ${c.cardName}`)
+      .join('\n');
+    
+    if (!missingCards) {
+      alert('No missing cards to export!');
+      return;
+    }
+
+    // Create and download the file
+    const blob = new Blob([missingCards], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'missing-cards.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   const filteredCards = analysis.overlappingCards.filter((card) => {
     if (filter === 'shortage') return card.shortage > 0;
     if (filter === 'sufficient') return card.shortage === 0;
@@ -79,32 +103,44 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
         />
       </div>
 
-      {/* Filters */}
-      <div className="flex flex-wrap gap-4 items-center">
-        <div className="flex items-center gap-2">
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Filter:</label>
-          <select
-            value={filter}
-            onChange={(e) => setFilter(e.target.value as typeof filter)}
-            className="px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-sm"
-          >
-            <option value="all">All Cards</option>
-            <option value="shortage">Cards with Shortage</option>
-            <option value="sufficient">Cards You Own</option>
-          </select>
+      {/* Filters and Export */}
+      <div className="flex flex-wrap gap-4 items-center justify-between">
+        <div className="flex flex-wrap gap-4 items-center">
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Filter:</label>
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value as typeof filter)}
+              className="px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-sm"
+            >
+              <option value="all">All Cards</option>
+              <option value="shortage">Cards with Shortage</option>
+              <option value="sufficient">Cards You Own</option>
+            </select>
+          </div>
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Sort by:</label>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+              className="px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-sm"
+            >
+              <option value="shortage">Shortage (High to Low)</option>
+              <option value="decks">Number of Decks</option>
+              <option value="name">Card Name</option>
+            </select>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Sort by:</label>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-            className="px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-sm"
-          >
-            <option value="shortage">Shortage (High to Low)</option>
-            <option value="decks">Number of Decks</option>
-            <option value="name">Card Name</option>
-          </select>
-        </div>
+        <button
+          onClick={exportMissingCards}
+          disabled={analysis.overlappingCards.filter(c => c.shortage > 0).length === 0}
+          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          Export Missing Cards
+        </button>
       </div>
 
       {/* Card List */}
