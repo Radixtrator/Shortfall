@@ -271,6 +271,74 @@ function StatCard({ label, value, color }: { label: string; value: number; color
   );
 }
 
+function CardImagePreview({ cardName, children }: { cardName: string; children: React.ReactNode }) {
+  const [showPreview, setShowPreview] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  
+  const imageUrl = `https://api.scryfall.com/cards/named?exact=${encodeURIComponent(cardName)}&format=image&version=normal`;
+
+  const handleMouseEnter = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    // Position the preview to the right of the element, or left if not enough space
+    let x = rect.right + 10;
+    let y = rect.top;
+    
+    // If preview would go off right edge, position to the left
+    if (x + 250 > viewportWidth) {
+      x = rect.left - 260;
+    }
+    
+    // Keep preview within viewport vertically
+    if (y + 350 > viewportHeight) {
+      y = viewportHeight - 360;
+    }
+    if (y < 10) y = 10;
+    
+    setPosition({ x, y });
+    setShowPreview(true);
+  };
+
+  return (
+    <div
+      className="relative inline-block"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={() => {
+        setShowPreview(false);
+        setImageLoaded(false);
+      }}
+    >
+      {children}
+      {showPreview && (
+        <div
+          className="fixed z-50 pointer-events-none"
+          style={{ left: position.x, top: position.y }}
+        >
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-2 border border-gray-200 dark:border-gray-700">
+            {!imageLoaded && (
+              <div className="w-[223px] h-[310px] bg-gray-200 dark:bg-gray-700 rounded animate-pulse flex items-center justify-center">
+                <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+            )}
+            <img
+              src={imageUrl}
+              alt={cardName}
+              className={`w-[223px] h-auto rounded ${imageLoaded ? 'block' : 'hidden'}`}
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageLoaded(false)}
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function CardOverlapItem({ card }: { card: CardOverlap }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const hasShortage = card.shortage > 0;
@@ -289,7 +357,11 @@ function CardOverlapItem({ card }: { card: CardOverlap }) {
       >
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <h3 className="font-medium text-gray-900 dark:text-white">{card.cardName}</h3>
+            <CardImagePreview cardName={card.cardName}>
+              <h3 className="font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer">
+                {card.cardName}
+              </h3>
+            </CardImagePreview>
             <a
               href={`https://scryfall.com/search?q=!"${encodeURIComponent(card.cardName)}"`}
               target="_blank"
