@@ -17,6 +17,7 @@ export default function Home() {
   const [deckName, setDeckName] = useState('');
   const [showDeckNameModal, setShowDeckNameModal] = useState(false);
   const [pendingDeckContent, setPendingDeckContent] = useState<string | null>(null);
+  const [showHelpModal, setShowHelpModal] = useState(false);
 
   // Load data from localStorage on mount
   useEffect(() => {
@@ -110,12 +111,23 @@ export default function Home() {
                 Find missing cards across your MTG decks
               </p>
             </div>
-            <button
-              onClick={handleClearAll}
-              className="text-sm text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition-colors"
-            >
-              Clear All Data
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setShowHelpModal(true)}
+                className="p-2 text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+                title="Help & Instructions"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </button>
+              <button
+                onClick={handleClearAll}
+                className="text-sm text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition-colors"
+              >
+                Clear All Data
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -244,6 +256,127 @@ export default function Home() {
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 Add Deck
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Help Modal */}
+      {showHelpModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex items-center justify-between">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                How to Use Deckflict
+              </h3>
+              <button
+                onClick={() => setShowHelpModal(false)}
+                className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            <div className="px-6 py-4 space-y-6">
+              {/* Getting Started */}
+              <section>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <span className="bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                  Upload Your Collection
+                </h4>
+                <div className="text-gray-600 dark:text-gray-300 space-y-2 ml-9">
+                  <p>Export your collection from Archidekt:</p>
+                  <ol className="list-decimal list-inside space-y-1 text-sm">
+                    <li>Go to <a href="https://archidekt.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">archidekt.com</a> and sign in</li>
+                    <li>Navigate to your Collection page</li>
+                    <li>Click the <strong>⋯</strong> menu or export button</li>
+                    <li>Select <strong>Export as CSV</strong></li>
+                    <li>Upload the downloaded file to Deckflict</li>
+                  </ol>
+                </div>
+              </section>
+
+              {/* Step 2 */}
+              <section>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <span className="bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                  Add Your Decks
+                </h4>
+                <div className="text-gray-600 dark:text-gray-300 space-y-2 ml-9">
+                  <p>Upload deck lists from Archidekt or other sources:</p>
+                  <ol className="list-decimal list-inside space-y-1 text-sm">
+                    <li>Open a deck on Archidekt</li>
+                    <li>Click <strong>Export</strong> → <strong>Copy to Clipboard</strong> or download as CSV/TXT</li>
+                    <li>Paste or upload the deck list to Deckflict</li>
+                    <li>Give your deck a name when prompted</li>
+                    <li>Repeat for all your decks!</li>
+                  </ol>
+                </div>
+              </section>
+
+              {/* Step 3 */}
+              <section>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <span className="bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                  Analyze Your Cards
+                </h4>
+                <div className="text-gray-600 dark:text-gray-300 space-y-2 ml-9">
+                  <p>Switch to the <strong>Card Count Analysis</strong> tab to see:</p>
+                  <ul className="list-disc list-inside space-y-1 text-sm">
+                    <li><strong>Cards in Multiple Decks</strong> — Cards shared across decks</li>
+                    <li><strong>Cards Not Owned</strong> — Cards you need to acquire</li>
+                    <li><strong>Shortage count</strong> — How many more copies you need</li>
+                    <li>Click any card to see which decks use it</li>
+                  </ul>
+                </div>
+              </section>
+
+              {/* Supported Formats */}
+              <section>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Supported Formats
+                </h4>
+                <div className="text-gray-600 dark:text-gray-300 ml-7">
+                  <ul className="space-y-2 text-sm">
+                    <li><strong>Archidekt CSV</strong> — Full export with set codes, foil status, etc.</li>
+                    <li><strong>Standard deck list</strong> — <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded">1 Lightning Bolt</code></li>
+                    <li><strong>MTGO format</strong> — <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded">1x Lightning Bolt</code></li>
+                    <li><strong>Arena format</strong> — <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded">1 Lightning Bolt (STA) 42</code></li>
+                  </ul>
+                </div>
+              </section>
+
+              {/* Tips */}
+              <section>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                  Tips
+                </h4>
+                <div className="text-gray-600 dark:text-gray-300 ml-7">
+                  <ul className="space-y-2 text-sm">
+                    <li>💾 Your data is saved in your browser — it persists between visits</li>
+                    <li>🔗 Click the link icon next to any card to look it up on Scryfall</li>
+                    <li>📤 Use <strong>Export Missing Cards</strong> to create a buy list</li>
+                    <li>🌲 Toggle <strong>Include Basic Lands</strong> to show/hide Plains, Island, etc.</li>
+                  </ul>
+                </div>
+              </section>
+            </div>
+
+            <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-4">
+              <button
+                onClick={() => setShowHelpModal(false)}
+                className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              >
+                Got it!
               </button>
             </div>
           </div>
