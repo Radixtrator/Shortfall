@@ -1,0 +1,139 @@
+1x Aggravated Assault (ons) 185 [Maybeboard{noDeck}{noPrice},Finisher] ^LimitBreak,#fa0d0d^
+1x Akiri, Fearless Voyager (znr) 365 [Creature] ^Have,#37d67a^
+1x Arcane Signet (fic) 333 [Artifact] ^Have,#37d67a^
+1x Arid Mesa (mh2) 244 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Ash Barrens (fic) 374 [Land] ^Have,#37d67a^
+1x Aurelia, the Warleader (fdn) 651 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Austere Command (fic) 231 [Sorcery] ^Have,#37d67a^
+1x Barret, Avalanche Leader (fic) 79 [Creature] ^Have,#37d67a^
+1x Bastion Protector (fic) 233 [Creature] ^Have,#37d67a^
+1x Battlefield Forge (fic) 375 [Land] ^Have,#37d67a^
+1x Beatrix, Loyal General (fin) 554 [Ausgeliehen] ^Have,#37d67a^
+1x Behemoth Sledge (fic) 320 [Artifact] ^Have,#37d67a^
+1x Birds of Paradise (rvr) 133 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Blackblade Reforged (dmc) 178 [Artifact] ^Have,#37d67a^
+1x Bloodforged Battle-Axe (2x2) 392 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Bonders' Enclave (fic) 376 [Land] ^Have,#37d67a^
+1x Bountiful Promenade (clb) 348 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Brotherhood Regalia (acr) 71 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Brushland (fic) 377 [Land] ^Have,#37d67a^
+1x Bugenhagen, Wise Elder (fic) 66 [Creature] ^Have,#37d67a^
+1x Buster Sword (fin) 351 *F* [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Cait Sith, Fortune Teller (fic) 54 [Creature] ^Have,#37d67a^
+1x Canopy Vista (fic) 378 [Land] ^Have,#37d67a^
+1x Champion's Helm (fic) 337 [Artifact] ^Have,#37d67a^
+1x Chaos Warp (fic) 291 [Instant] ^Have,#37d67a^
+1x Cid, Freeflier Pilot (fic) 13 [Creature] ^Have,#37d67a^
+1x Cinder Glade (fic) 380 [Land] ^Have,#37d67a^
+1x Clever Concealment (fic) 236 [Instant] ^Have,#37d67a^
+1x Clifftop Retreat (fic) 381 [Land] ^Have,#37d67a^
+1x Cloud, Ex-SOLDIER (fic) 2 *F* [Commander{top}] ^Have,#37d67a^
+1x Cloud, Midgar Mercenary (fin) 375 *F* [Creature] ^Have,#37d67a^
+1x Cloud, Planet's Champion (fin) 552 *F* [Ausgeliehen] ^Have,#37d67a^
+1x Cloud's Limit Break (fic) 14 [Instant] ^Have,#37d67a^
+1x Colossus Hammer (fic) 338 [Artifact] ^Have,#37d67a^
+1x Command Tower (fic) 485 [Land] ^Have,#37d67a^
+1x Conformer Shuriken (fic) 98 [Artifact] ^Have,#37d67a^
+1x Conqueror's Flail (fic) 340 [Artifact] ^Have,#37d67a^
+1x Crackdown Construct (plst) AER-148 [Maybeboard{noDeck}{noPrice},Finisher] ^LimitBreak,#fa0d0d^
+1x Cultivate (fic) 300 [Sorcery] ^Have,#37d67a^
+1x Dancer's Chakrams (fic) 17 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Darksteel Plate (fic) 342 [Artifact] ^Have,#37d67a^
+1x Decimate (fic) 323 [Sorcery] ^Have,#37d67a^
+1x Dispatch (fic) 241 [Instant] ^Have,#37d67a^
+1x Enlightened Tutor (tle) 305 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Esper Sentinel (mh2) 328 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Evolving Wilds (fic) 389 [Land] ^Have,#37d67a^
+1x Excalibur, Sword of Eden (acr) 72 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Exotic Orchard (fic) 390 [Land] ^Have,#37d67a^
+1x Farseek (fca) 45 [Ramp]
+1x Fighter Class (afr) 222 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Fire-Lit Thicket (fic) 392 [Land] ^Have,#37d67a^
+1x Firion, Wild Rose Warrior (fin) 386 *F* [Creature] ^Have,#37d67a^
+1x Forest (fin) 308 *F* [Land] ^Have,#37d67a^
+2x Forest (fic) 482 *F* [Land] ^Have,#37d67a^
+1x Forge Anew (sld) 7002 *F* [Artifact] ^Have,#37d67a^
+1x Fortified Village (fic) 396 [Land] ^Have,#37d67a^
+1x Furycalm Snarl (fic) 397 [Land] ^Have,#37d67a^
+1x Game Trail (fic) 398 [Land] ^Have,#37d67a^
+1x Genji Glove (fin) 258 *F* [Artifact] ^Have,#37d67a^
+1x Gilgamesh, Master-at-Arms (fin) 338 *F* [Creature] ^Have,#37d67a^
+1x Gongaga, Reactor Town (fin) 280 *F* [Land] ^Have,#37d67a^
+1x Harmonize (fic) 308 [Sorcery] ^Have,#37d67a^
+1x Helitrooper (fic) 22 [Creature] ^Have,#37d67a^
+1x Helm of the Host (blc) 276 [Maybeboard{noDeck}{noPrice},Copy] ^LimitBreak,#fa0d0d^
+1x Hero's Blade (fic) 345 [Artifact] ^Have,#37d67a^
+1x Hero's Heirloom (fic) 346 [Artifact] ^Have,#37d67a^
+1x Heroic Intervention (sld) 1872 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Inspiring Statuary (fic) 347 [Artifact] ^Have,#37d67a^
+1x Inventory Management (pip) 105 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Jetmir's Garden (snc) 250 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Jungle Shrine (fic) 406 [Land] ^Have,#37d67a^
+1x Kodama of the West Tree (j25) 78 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Lifestream's Blessing (fic) 67 [Instant] ^Have,#37d67a^
+1x Lightning, Army of One (fin) 320 *F* [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Mask of Memory (fic) 350 [Artifact] ^Have,#37d67a^
+1x Mithril Coat (ltr) 696 [Protection{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Mossfire Valley (fic) 407 [Land] ^Have,#37d67a^
+1x Mountain (fin) 305 *F* [Land] ^Have,#37d67a^
+2x Mountain (fic) 481 *F* [Land] ^Have,#37d67a^
+1x Mycosynth Lattice (plst) BBD-241 [Protection{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Nature's Lore (fic) 311 [Sorcery] ^Have,#37d67a^
+1x Nibelheim Aflame (fin) 339 *F* [Sorcery] ^LimitBreak,#fa0d0d^
+1x Path of Ancestry (fic) 411 [Land] ^Have,#37d67a^
+1x Plains (fin) 295 *F* [Land] ^Have,#37d67a^
+2x Plains (fic) 478 *F* [Land] ^Have,#37d67a^
+1x Professional Face-Breaker (fic) 296 [Creature] ^Have,#37d67a^
+1x Professor Hojo (fic) 69 [Creature] ^Have,#37d67a^
+1x Puresteel Paladin (fic) 250 [Creature] ^Have,#37d67a^
+1x Rampant Growth (fic) 313 [Sorcery] ^Have,#37d67a^
+1x Raubahn, Bull of Ala Mhigo (fin) 388 *F* [Creature] ^Have,#37d67a^
+1x Red XIII, Proud Warrior (fic) 181 [Creature] ^Have,#37d67a^
+1x Relentless Assault (cmr) 416 [Sorcery] ^Have,#37d67a^
+1x Rogue's Passage (fdn) 264 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Rootbound Crag (fic) 416 [Land] ^Have,#37d67a^
+1x Rugged Prairie (fic) 417 [Land] ^Have,#37d67a^
+1x Sacred Foundry (eoe) 256 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Sacred Peaks (fic) 418 [Land] ^Have,#37d67a^
+1x Scavenger Grounds (fic) 419 [Land] ^Have,#37d67a^
+1x Sephiroth, Fallen Hero (fic) 92 [Creature] ^Have,#37d67a^
+1x Shadowspear (plst) THB-236 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Sigarda's Aid (sld) 731 *F* [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Skullclamp (fic) 355 [Artifact] ^Have,#37d67a^
+1x Slayers' Stronghold (fic) 424 [Land] ^Have,#37d67a^
+1x Smothering Tithe (cmm) 57 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Sol Ring (fic) 357 [Artifact] ^Have,#37d67a^
+1x Spectator Seating (cmm) 427 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Spire Garden (clb) 361 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Spire of Industry (fic) 426 [Land] ^Have,#37d67a^
+1x Sram, Senior Edificer (fca) 3 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Stomping Ground (eoe) 258 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Stoneforge Mystic (spg) 29 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Summoning Materia (fic) 72 [Artifact] ^Have,#37d67a^
+1x Sungrass Prairie (fic) 428 [Land] ^Have,#37d67a^
+1x Sunpetal Grove (fic) 432 [Land] ^Have,#37d67a^
+1x Sunscorched Divide (fic) 433 [Land] ^Have,#37d67a^
+1x Swiftfoot Boots (fic) 361 *F* [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Sword of Feast and Famine (acr) 99 [Maybeboard{noDeck}{noPrice},Ramp] ^LimitBreak,#fa0d0d^
+1x Sword of Hearth and Home (mh2) 433 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Sword of the Animist (fic) 362 [Artifact] ^Have,#37d67a^
+1x Swords to Plowshares (fic) 256 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Teferi's Protection (2x2) 32 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Temple Garden (ecl) 268 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x The Reaver Cleaver (m3c) 217 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Tifa Lockhart (fin) 391 *F* [Creature] ^Have,#37d67a^
+1x Tifa, Martial Artist (fic) 6 [Creature] ^Have,#37d67a^
+1x Trailblazer's Boots (fic) 370 [Artifact] ^Have,#37d67a^
+1x Ultima Weapon (fin) 563 [Ausgeliehen] ^Have,#37d67a^
+1x Ultimate Magic: Holy (fic) 110 [Instant] ^Have,#37d67a^
+1x Umezawa's Jitte (sld) 1865 *F* [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Unfinished Business (fic) 259 [Sorcery] ^Have,#37d67a^
+1x Vandalblast (fic) 298 [Sorcery] ^Have,#37d67a^
+1x Vanquish the Horde (fic) 260 [Sorcery] ^Have,#37d67a^
+1x Vincent, Vengeful Atoner (fic) 64 [Creature] ^Have,#37d67a^
+1x Windswept Heath (mh3) 235 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Windurst, Federation Center (fin) 292 *F* [Land] ^Have,#37d67a^
+1x Wooded Foothills (mh3) 236 [Maybeboard{noDeck}{noPrice}] ^LimitBreak,#fa0d0d^
+1x Wrecking Ball Arm (fic) 100 [Artifact] ^Have,#37d67a^
+1x Yuffie, Materia Hunter (fic) 470 *F* [Creature] ^Have,#37d67a^
+1x Zack Fair (fin) 45 [Creature] ^Have,#37d67a^

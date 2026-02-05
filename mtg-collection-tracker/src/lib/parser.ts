@@ -86,8 +86,11 @@ export function parseDeckList(content: string): Card[] {
 
 // Clean card name by removing set codes, collector numbers, etc.
 // Archidekt format: "Card Name (set) 123 *F* [Category]"
+// Also handles: "Card Name ^Have,#37d67a^" category/color codes
 function cleanCardName(name: string): string {
   return name
+    // Remove Archidekt category/color codes: ^Have,#37d67a^ or ^Category^
+    .replace(/\s*\^[^^]*\^\s*/g, ' ')
     // Remove set code and collector number: (abc) 123 or (abc) 123a
     .replace(/\s*\([a-z0-9]+\)\s*\d+[a-z]?\s*/gi, ' ')
     // Remove trailing brackets with categories: [Artifact], [Land,Creature]
@@ -98,6 +101,8 @@ function cleanCardName(name: string): string {
     .replace(/\s*<[^>]*>\s*$/g, '')
     // Remove foil marker *F*
     .replace(/\s*\*F\*\s*/gi, ' ')
+    // Remove any remaining hex color codes like #37d67a
+    .replace(/\s*#[0-9a-fA-F]{6}\s*/g, ' ')
     // Clean up multiple spaces and trim
     .replace(/\s+/g, ' ')
     .trim();
@@ -175,10 +180,17 @@ export function analyzeDeckOverlaps(collection: Collection, decks: Deck[]): Deck
       
       const overlap = cardMap.get(normalizedName)!;
       overlap.totalNeeded += card.quantity;
-      overlap.decks.push({
-        deckName: deck.name,
-        quantity: card.quantity,
-      });
+      
+      // Check if this deck already has an entry for this card
+      const existingDeckEntry = overlap.decks.find(d => d.deckName === deck.name);
+      if (existingDeckEntry) {
+        existingDeckEntry.quantity += card.quantity;
+      } else {
+        overlap.decks.push({
+          deckName: deck.name,
+          quantity: card.quantity,
+        });
+      }
     }
   }
   
