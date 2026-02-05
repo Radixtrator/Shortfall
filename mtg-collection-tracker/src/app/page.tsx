@@ -124,6 +124,24 @@ export default function Home() {
     saveDecks(updatedDecks);
   };
 
+  const renameDeck = (id: string, newName: string) => {
+    const updatedDecks = decks.map((d) =>
+      d.id === id ? { ...d, name: newName } : d
+    );
+    setDecks(updatedDecks);
+    saveDecks(updatedDecks);
+    showNotification('success', `Deck renamed to "${newName}"`);
+  };
+
+  const reorderDecks = (fromIndex: number, toIndex: number) => {
+    if (toIndex < 0 || toIndex >= decks.length) return;
+    const updatedDecks = [...decks];
+    const [movedDeck] = updatedDecks.splice(fromIndex, 1);
+    updatedDecks.splice(toIndex, 0, movedDeck);
+    setDecks(updatedDecks);
+    saveDecks(updatedDecks);
+  };
+
   const clearCollection = () => {
     setCollection({ cards: [], uploadedAt: null });
     saveCollection({ cards: [], uploadedAt: null });
@@ -275,7 +293,12 @@ export default function Home() {
                   label="Upload a deck list"
                   id="deck-upload"
                 />
-                <DeckList decks={decks} onRemove={removeDeck} />
+                <DeckList 
+                  decks={decks} 
+                  onRemove={removeDeck} 
+                  onRename={renameDeck}
+                  onReorder={reorderDecks}
+                />
                 <div className="text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 rounded p-3">
                   <p className="font-medium mb-1">Supported formats:</p>
                   <ul className="list-disc list-inside space-y-1">
