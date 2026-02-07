@@ -34,6 +34,10 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
   const [notOwnedPriceLoading, setNotOwnedPriceLoading] = useState(false);
   const [notOwnedPriceProgress, setNotOwnedPriceProgress] = useState(0);
   const [notOwnedPriceError, setNotOwnedPriceError] = useState<string | null>(null);
+  
+  // Deck filter for Cards Not Owned section
+  const [selectedDecks, setSelectedDecks] = useState<Set<string>>(new Set());
+  const [showDeckFilter, setShowDeckFilter] = useState(false);
 
   const fetchPrices = async () => {
     if (!analysis) return;
@@ -72,8 +76,10 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
     setNotOwnedPriceProgress(0);
     
     try {
+      // Use the filtered cards (respects deck filter)
       const cardsToPrice = analysis.cardsNotOwned
         .filter(c => includeBasicLands || !isBasicLand(c.cardName))
+        .filter(c => selectedDecks.size === 0 || c.decks.some(d => selectedDecks.has(d.deckName)))
         .map(c => ({ name: c.cardName, quantity: c.totalNeeded }));
       
       if (cardsToPrice.length === 0) {
@@ -98,7 +104,9 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
   ) : null;
 
   const notOwnedPriceStats = analysis ? calculateTotalPrice(
-    analysis.cardsNotOwned.filter(c => includeBasicLands || !isBasicLand(c.cardName)),
+    analysis.cardsNotOwned
+      .filter(c => includeBasicLands || !isBasicLand(c.cardName))
+      .filter(c => selectedDecks.size === 0 || c.decks.some(d => selectedDecks.has(d.deckName))),
     notOwnedPriceMap
   ) : null;
 
@@ -152,9 +160,10 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
   };
 
   const exportNotOwnedCards = () => {
-    // Get all cards not owned at all
+    // Get all cards not owned at all (respects deck filter)
     const notOwnedCards = analysis.cardsNotOwned
       .filter(c => includeBasicLands || !isBasicLand(c.cardName))
+      .filter(c => selectedDecks.size === 0 || c.decks.some(d => selectedDecks.has(d.deckName)))
       .map(c => `${c.totalNeeded} ${c.cardName}`)
       .join('\n');
     
@@ -199,7 +208,36 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
     return a.cardName.localeCompare(b.cardName);
   });
 
-  const filteredNotOwnedCards = filterBasicLands(analysis.cardsNotOwned);
+  // Get all unique deck names from cards not owned
+  const allDeckNames = Array.from(
+    new Set(
+      analysis.cardsNotOwned.flatMap(card => card.decks.map(d => d.deckName))
+    )
+  ).sort();
+
+  // Filter cards not owned by selected decks
+  const filteredNotOwnedCards = filterBasicLands(analysis.cardsNotOwned).filter(card => {
+    if (selectedDecks.size === 0) return true; // No filter = show all
+    return card.decks.some(d => selectedDecks.has(d.deckName));
+  });
+
+  const toggleDeck = (deckName: string) => {
+    const newSet = new Set(selectedDecks);
+    if (newSet.has(deckName)) {
+      newSet.delete(deckName);
+    } else {
+      newSet.add(deckName);
+    }
+    setSelectedDecks(newSet);
+  };
+
+  const clearDeckFilter = () => {
+    setSelectedDecks(new Set());
+  };
+
+  const selectAllDecks = () => {
+    setSelectedDecks(new Set(allDeckNames));
+  };
 
   return (
     <div className="space-y-6">
@@ -391,6 +429,85 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
             <p className="text-purple-700 dark:text-purple-300 text-sm">
               These are cards in your decks that you don&apos;t own any copies of.
             </p>
+          </div>
+
+          {/* Deck Filter */}
+          <div className="relative">
+            <div className="flex flex-wrap gap-2 items-center">
+              <button
+                onClick={() => setShowDeckFilter(!showDeckFilter)}
+                className={`flex items-center gap-2 px-3 py-2 border rounded-lg text-sm font-medium transition-colors ${
+                  selectedDecks.size > 0
+                    ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300'
+                    : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                }`}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                </svg>
+                Filter by Deck
+                {selectedDecks.size > 0 && (
+                  <span className="bg-purple-600 text-white text-xs px-1.5 py-0.5 rounded-full">
+                    {selectedDecks.size}
+                  </span>
+                )}
+                <svg className={`w-4 h-4 transition-transform ${showDeckFilter ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {selectedDecks.size > 0 && (
+                <button
+                  onClick={clearDeckFilter}
+                  className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 underline"
+                >
+                  Clear filter
+                </button>
+              )}
+            </div>
+            
+            {showDeckFilter && (
+              <div className="absolute z-10 mt-2 w-72 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-3">
+                <div className="flex justify-between items-center mb-2 pb-2 border-b border-gray-200 dark:border-gray-700">
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Select Decks</span>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={selectAllDecks}
+                      className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                    >
+                      All
+                    </button>
+                    <button
+                      onClick={clearDeckFilter}
+                      className="text-xs text-gray-500 dark:text-gray-400 hover:underline"
+                    >
+                      None
+                    </button>
+                  </div>
+                </div>
+                <div className="max-h-48 overflow-y-auto space-y-1">
+                  {allDeckNames.map(deckName => (
+                    <label
+                      key={deckName}
+                      className="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedDecks.has(deckName)}
+                        onChange={() => toggleDeck(deckName)}
+                        className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                      />
+                      <span className="text-sm text-gray-700 dark:text-gray-300 truncate">{deckName}</span>
+                    </label>
+                  ))}
+                </div>
+                <button
+                  onClick={() => setShowDeckFilter(false)}
+                  className="mt-2 w-full py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded hover:bg-gray-200 dark:hover:bg-gray-600"
+                >
+                  Done
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Buttons for Cards Not Owned */}
