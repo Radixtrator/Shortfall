@@ -95,7 +95,7 @@ export default function DeckList({ decks, onRemove, onRename, onReorder, onRefre
                     if (e.key === 'Enter') saveEdit();
                     if (e.key === 'Escape') cancelEdit();
                   }}
-                  className="flex-1 px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded bg-slate-900 text-slate-100 focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  className="flex-1 px-2 py-1 text-sm border border-gray-700 rounded bg-slate-950 text-slate-100 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   autoFocus
                 />
                 <button
@@ -145,7 +145,7 @@ export default function DeckList({ decks, onRemove, onRename, onReorder, onRefre
               )}
               <button
                 onClick={() => startEditing(deck)}
-                className="p-1.5 text-gray-500 hover:text-teal-300 dark:text-gray-400 dark:hover:text-teal-300 transition-colors"
+                className="p-1.5 text-gray-500 hover:text-orange-400 dark:text-gray-400 dark:hover:text-orange-400 transition-colors"
                 title="Rename deck"
                 aria-label="Rename deck"
               >

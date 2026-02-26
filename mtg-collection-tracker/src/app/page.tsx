@@ -266,7 +266,7 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setShowHelpModal(true)}
-                className="p-2 text-slate-400 hover:text-teal-300 transition-colors rounded-full hover:bg-slate-800/80"
+                className="p-2 text-slate-400 hover:text-orange-400 transition-colors rounded-full hover:bg-slate-800/80"
                 title="Help & Instructions"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -307,7 +307,7 @@ export default function Home() {
           >
             Card Count Analysis
             {analysis && analysis.overlappingCards.length > 0 && (
-              <span className="ml-2 bg-teal-500/10 text-teal-300 text-xs px-2 py-0.5 rounded-full">
+              <span className="ml-2 bg-orange-500/10 text-orange-300 text-xs px-2 py-0.5 rounded-full">
                 {analysis.overlappingCards.length}
               </span>
             )}
@@ -401,7 +401,7 @@ export default function Home() {
               value={deckName}
               onChange={(e) => setDeckName(e.target.value)}
               placeholder="Enter deck name..."
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-600 rounded-lg bg-slate-900 text-slate-100 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               autoFocus
               onKeyDown={(e) => {
                 if (e.key === 'Enter') confirmDeckUpload();
@@ -418,7 +418,7 @@ export default function Home() {
               <button
                 onClick={confirmDeckUpload}
                 disabled={!deckName.trim()}
-                className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 Add Deck
               </button>
@@ -449,13 +449,13 @@ export default function Home() {
               {/* Getting Started */}
               <section>
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                  <span className="bg-teal-500/10 text-teal-300 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                  <span className="bg-orange-500/10 text-orange-300 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">1</span>
                   Upload Your Collection
                 </h4>
                 <div className="text-gray-600 dark:text-gray-300 space-y-2 ml-9">
                   <p>Export your collection from Archidekt:</p>
                   <ol className="list-decimal list-inside space-y-1 text-sm">
-                    <li>Go to <a href="https://archidekt.com" target="_blank" rel="noopener noreferrer" className="text-teal-300 hover:underline">archidekt.com</a> and sign in</li>
+                    <li>Go to <a href="https://archidekt.com" target="_blank" rel="noopener noreferrer" className="text-orange-300 hover:underline">archidekt.com</a> and sign in</li>
                     <li>Navigate to your Collection page</li>
                     <li>Click the <strong>⋯</strong> menu or export button</li>
                     <li>Select <strong>Export as CSV</strong></li>
@@ -467,7 +467,7 @@ export default function Home() {
               {/* Step 2 */}
               <section>
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                  <span className="bg-teal-500/10 text-teal-300 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                  <span className="bg-orange-500/10 text-orange-300 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">2</span>
                   Add Your Decks
                 </h4>
                 <div className="text-gray-600 dark:text-gray-300 space-y-2 ml-9">
@@ -485,7 +485,7 @@ export default function Home() {
               {/* Step 3 */}
               <section>
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                  <span className="bg-teal-500/10 text-teal-300 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                  <span className="bg-orange-500/10 text-orange-300 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">3</span>
                   Analyze Your Cards
                 </h4>
                 <div className="text-gray-600 dark:text-gray-300 space-y-2 ml-9">
@@ -558,7 +558,7 @@ export default function Home() {
             <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-4">
               <button
                 onClick={() => setShowHelpModal(false)}
-                className="w-full px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-colors font-medium"
+                className="w-full px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium"
               >
                 Got it!
               </button>

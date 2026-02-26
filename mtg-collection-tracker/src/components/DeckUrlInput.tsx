@@ -27,12 +27,12 @@ export default function DeckUrlInput({ onSubmit, loading }: DeckUrlInputProps) {
           onChange={(e) => setUrl(e.target.value)}
           placeholder="https://archidekt.com/decks/12345"
           disabled={loading}
-          className="flex-1 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-teal-500 focus:border-transparent disabled:opacity-50"
+          className="flex-1 px-3 py-2 text-sm border border-gray-600 rounded-lg bg-slate-900 text-slate-100 placeholder-gray-500 focus:ring-2 focus:ring-orange-500 focus:border-transparent disabled:opacity-50"
         />
         <button
           type="submit"
           disabled={!url.trim() || loading}
-          className="px-4 py-2 text-sm font-medium bg-teal-500 text-white rounded-lg hover:bg-teal-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+          className="px-4 py-2 text-sm font-medium bg-orange-500 text-white rounded-lg hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
         >
           {loading ? (
             <>

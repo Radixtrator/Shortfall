@@ -67,7 +67,7 @@ export default function CollectionSummary({ collection, decks, onClear }: Collec
           {decks.length > 0 && (
             <button
               onClick={exportUnallocated}
-              className="text-sm text-teal-300 hover:text-teal-200 transition-colors flex items-center gap-1"
+              className="text-sm text-orange-400 hover:text-orange-300 transition-colors flex items-center gap-1"
               title="Export cards not used in any deck"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
