@@ -67,17 +67,12 @@ export default function FileUpload({ onUpload, label, accept = '.csv,.txt', id }
       />
       <div className="space-y-2">
         <svg
-          className="mx-auto h-12 w-12 text-gray-400"
-          stroke="currentColor"
-          fill="none"
-          viewBox="0 0 48 48"
+          className="mx-auto h-12 w-12 text-neutral-400"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+          <path d="M11.19 2.25c.78.01 1.52.48 1.81 1.25l5 11.95c.09.26.14.55.13.8a2.02 2.02 0 0 1-1.23 1.8L9.53 21.1c-.26.12-.53.15-.79.15A2 2 0 0 1 6.93 20L1.97 8.05c-.42-1.01.07-2.18 1.09-2.6l7.36-3.05c.25-.09.51-.15.77-.15m3.48 0h1.45a2 2 0 0 1 2 2v6.35zm5.46 1.54l1.34.57a1.99 1.99 0 0 1 1.09 2.6l-2.43 5.86zm-8.94.43L3.8 7.29L8.77 19.3l7.4-3.06zM8.65 8.54l3.23 2.41l-.44 4.01l-3.23-2.42z" />
         </svg>
         <div className="text-sm text-gray-300">
           <span className="font-semibold text-orange-400">{label}</span>
