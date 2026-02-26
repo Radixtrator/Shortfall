@@ -262,7 +262,7 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
             activeSection === 'notOwned'
               ? 'border-purple-500 text-purple-600 dark:text-purple-400'
               : 'border-transparent text-neutral-500 hover:text-neutral-200'
-          >`}
+          }`}
         >
           Missing Cards
           <span className="ml-2 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-xs px-2 py-0.5 rounded-full">
@@ -325,6 +325,8 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
                   value={filter}
                   onChange={(e) => setFilter(e.target.value as typeof filter)}
                   className="px-3 py-1.5 border border-[#333333] rounded-md bg-[#191919] text-neutral-200 text-sm"
+                >
+                  <option value="all">All Cards</option>
                   <option value="shortage">Cards with Shortage</option>
                   <option value="sufficient">Cards You Own</option>
                 </select>
@@ -335,6 +337,8 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
                   className="px-3 py-1.5 border border-[#333333] rounded-md bg-[#191919] text-neutral-200 text-sm"
+                >
+                  <option value="shortage">Shortage (High to Low)</option>
                   <option value="decks">Number of Decks</option>
                   <option value="name">Card Name</option>
                 </select>
