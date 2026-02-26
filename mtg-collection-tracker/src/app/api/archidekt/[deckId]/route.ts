@@ -43,7 +43,7 @@ export async function GET(
       {
         headers: {
           Accept: 'application/json',
-          'User-Agent': 'Deckflict/1.0 (MTG deck conflict checker)',
+          'User-Agent': 'Shortfall/1.0 (MTG deck conflict checker)',
         },
         // Cache for 5 minutes to be friendly to Archidekt's API
         next: { revalidate: 300 },

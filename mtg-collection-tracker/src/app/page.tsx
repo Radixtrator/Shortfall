@@ -257,7 +257,7 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                Deckflict
+                Shortfall
               </h1>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                 Find missing cards across your MTG decks
@@ -433,7 +433,7 @@ export default function Home() {
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex items-center justify-between">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                How to Use Deckflict
+                How to Use Shortfall
               </h3>
               <button
                 onClick={() => setShowHelpModal(false)}
@@ -459,7 +459,7 @@ export default function Home() {
                     <li>Navigate to your Collection page</li>
                     <li>Click the <strong>⋯</strong> menu or export button</li>
                     <li>Select <strong>Export as CSV</strong></li>
-                    <li>Upload the downloaded file to Deckflict</li>
+                    <li>Upload the downloaded file to Shortfall</li>
                   </ol>
                 </div>
               </section>
@@ -475,7 +475,7 @@ export default function Home() {
                   <ol className="list-decimal list-inside space-y-1 text-sm">
                     <li>Open a deck on Archidekt</li>
                     <li>Click <strong>Export</strong> → <strong>Copy to Clipboard</strong> or download as CSV/TXT</li>
-                    <li>Paste or upload the deck list to Deckflict</li>
+                    <li>Paste or upload the deck list to Shortfall</li>
                     <li>Give your deck a name when prompted</li>
                     <li>Repeat for all your decks!</li>
                   </ol>

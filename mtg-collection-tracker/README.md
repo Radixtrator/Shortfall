@@ -1,4 +1,4 @@
-# Deckflict
+# Shortfall
 
 **Find missing cards across your MTG decks**
 
@@ -62,23 +62,26 @@ npm start
 2. Navigate to your Collection
 3. Click the menu or export button
 4. Select **Export as CSV**
-5. Upload the downloaded file to Deckflict
+5. Upload the downloaded file to Shortfall
 
 ### Exporting a Deck
 1. Open your deck on Archidekt
 2. Click **Export** > **Copy to Clipboard** or download as CSV/TXT
-3. Upload or paste into Deckflict
+3. Upload or paste into Shortfall
 
 ---
 
 ## Privacy
 
-Deckflict is **100% client-side**. Your data never leaves your browser:
+Shortfall is **100% client-side**. Your deck and collection data stay in your browser:
 
 - No account or login required
-- No data sent to any server
-- No cookies or tracking
-- Data stored locally using browser localStorage
+- No data is sent to any server that you control or to any analytics/advertising service
+- The app makes requests only to:
+	- Archidekt's public API (or CSV exports) to load your own public deck data
+	- Scryfall's public API to look up card data and prices
+- No cookies or tracking scripts
+- Data is stored locally using your browser's `localStorage` and can be cleared at any time from within the app
 
 ---
 
@@ -92,6 +95,12 @@ Deckflict is **100% client-side**. Your data never leaves your browser:
 
 ---
 
+## Legal
+
+- Shortfall is an independent fan project and is **not affiliated with, endorsed, or sponsored by** Wizards of the Coast, Archidekt, or Scryfall.
+- **Magic: The Gathering** and all related marks and logos are trademarks of Wizards of the Coast LLC.
+- If you use Scryfall data or images with this project, please follow their terms and attribution requirements (see [scryfall.com](https://scryfall.com)).
+
 ## License
 
-MIT
+This project is licensed under the MIT License — see the root `LICENSE` file for details.
