@@ -47,7 +47,7 @@ export default function CollectionSummary({ collection, decks, onClear }: Collec
   const unallocatedTotal = unallocated.reduce((sum, c) => sum + c.quantity, 0);
 
   return (
-    <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4">
+    <div className="bg-slate-900/70 border border-slate-800 rounded-lg p-4">
       <div className="flex items-center justify-between">
         <div>
           <h3 className="font-semibold text-gray-900 dark:text-white">Your Collection</h3>
@@ -67,7 +67,7 @@ export default function CollectionSummary({ collection, decks, onClear }: Collec
           {decks.length > 0 && (
             <button
               onClick={exportUnallocated}
-              className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors flex items-center gap-1"
+              className="text-sm text-teal-300 hover:text-teal-200 transition-colors flex items-center gap-1"
               title="Export cards not used in any deck"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

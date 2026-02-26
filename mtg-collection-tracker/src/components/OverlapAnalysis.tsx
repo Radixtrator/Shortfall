@@ -242,17 +242,17 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
   return (
     <div className="space-y-6">
       {/* Section Tabs */}
-      <div className="flex gap-2 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex gap-2 border-b border-slate-800">
         <button
           onClick={() => setActiveSection('overlapping')}
-          className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
+            className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
             activeSection === 'overlapping'
-              ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+	      ? 'border-teal-400 text-teal-300'
               : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
           }`}
         >
           Cards in Multiple Decks
-          <span className="ml-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-xs px-2 py-0.5 rounded-full">
+          <span className="ml-2 bg-teal-500/10 text-teal-300 text-xs px-2 py-0.5 rounded-full">
             {filterBasicLands(analysis.overlappingCards).length}
           </span>
         </button>
@@ -280,7 +280,7 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
             onChange={(e) => setIncludeBasicLands(e.target.checked)}
             className="sr-only peer"
           />
-          <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+          <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-teal-400 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-teal-500"></div>
           <span className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300">
             Include Basic Lands
           </span>
@@ -369,7 +369,7 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
               <button
                 onClick={exportMissingCards}
                 disabled={filterBasicLands(analysis.overlappingCards).filter(c => c.shortage > 0).length === 0}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -472,7 +472,7 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
                   <div className="flex gap-2">
                     <button
                       onClick={selectAllDecks}
-                      className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                      className="text-xs text-teal-300 hover:underline"
                     >
                       All
                     </button>
@@ -594,7 +594,7 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
 
 function StatCard({ label, value, color }: { label: string; value: number; color: string }) {
   const colorClasses: Record<string, string> = {
-    blue: 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300',
+    blue: 'bg-teal-500/10 text-teal-300',
     red: 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300',
     green: 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300',
     purple: 'bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300',
@@ -720,7 +720,7 @@ function CardOverlapItem({ card, priceMap }: { card: CardOverlap; priceMap?: Map
         <div className="flex-1">
           <div className="flex items-center gap-2">
             <CardImagePreview cardName={card.cardName}>
-              <h3 className="font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer">
+              <h3 className="font-medium text-gray-900 dark:text-white hover:text-teal-300 cursor-pointer">
                 {card.cardName}
               </h3>
             </CardImagePreview>
@@ -729,7 +729,7 @@ function CardOverlapItem({ card, priceMap }: { card: CardOverlap; priceMap?: Map
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+              className="text-teal-300 hover:text-teal-200"
               title="View on Scryfall"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

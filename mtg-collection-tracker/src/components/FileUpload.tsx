@@ -49,8 +49,8 @@ export default function FileUpload({ onUpload, label, accept = '.csv,.txt', id }
     <div
       className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors cursor-pointer
         ${isDragging 
-          ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' 
-          : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
+	  ? 'border-teal-400 bg-teal-500/10 dark:bg-teal-500/20' 
+	  : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
         }`}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
@@ -80,7 +80,7 @@ export default function FileUpload({ onUpload, label, accept = '.csv,.txt', id }
           />
         </svg>
         <div className="text-sm text-gray-600 dark:text-gray-400">
-          <span className="font-semibold text-blue-600 dark:text-blue-400">{label}</span>
+          <span className="font-semibold text-teal-500 dark:text-teal-300">{label}</span>
           <p className="mt-1">or drag and drop</p>
         </div>
         <p className="text-xs text-gray-500 dark:text-gray-500">
