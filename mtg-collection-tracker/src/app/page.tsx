@@ -5,9 +5,11 @@ import { Collection, Deck, DeckAnalysis } from '@/types';
 import { parseCardList, analyzeDeckOverlaps, generateId } from '@/lib/parser';
 import { loadCollection, saveCollection, loadDecks, saveDecks, clearAllData } from '@/lib/storage';
 import FileUpload from '@/components/FileUpload';
+import DeckUrlInput from '@/components/DeckUrlInput';
 import DeckList from '@/components/DeckList';
 import OverlapAnalysis from '@/components/OverlapAnalysis';
 import CollectionSummary from '@/components/CollectionSummary';
+import { extractDeckId, fetchArchidektDeck } from '@/lib/archidekt';
 
 export default function Home() {
   const [collection, setCollection] = useState<Collection>({ cards: [], uploadedAt: null });
@@ -19,6 +21,7 @@ export default function Home() {
   const [pendingDeckContent, setPendingDeckContent] = useState<string | null>(null);
   const [showHelpModal, setShowHelpModal] = useState(false);
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [urlLoading, setUrlLoading] = useState(false);
 
   const showNotification = (type: 'success' | 'error', message: string) => {
     setNotification({ type, message });
@@ -115,6 +118,41 @@ export default function Home() {
       setShowDeckNameModal(false);
       setPendingDeckContent(null);
       setDeckName('');
+    }
+  };
+
+  const handleDeckUrl = async (url: string) => {
+    const deckId = extractDeckId(url);
+    if (!deckId) {
+      showNotification('error', 'Invalid Archidekt URL or deck ID. Expected format: https://archidekt.com/decks/12345');
+      return;
+    }
+
+    setUrlLoading(true);
+    try {
+      const { name, cards } = await fetchArchidektDeck(deckId);
+
+      if (cards.length === 0) {
+        showNotification('error', 'No cards found in the deck.');
+        return;
+      }
+
+      const newDeck: Deck = {
+        id: generateId(),
+        name,
+        cards,
+        uploadedAt: new Date(),
+      };
+
+      const updatedDecks = [...decks, newDeck];
+      setDecks(updatedDecks);
+      saveDecks(updatedDecks);
+      showNotification('success', `Imported "${name}" with ${cards.length} cards from Archidekt`);
+    } catch (error) {
+      console.error('Error fetching Archidekt deck:', error);
+      showNotification('error', error instanceof Error ? error.message : 'Failed to fetch deck from Archidekt.');
+    } finally {
+      setUrlLoading(false);
     }
   };
 
@@ -264,7 +302,7 @@ export default function Home() {
                 Your Collection
               </h2>
               <div className="space-y-4">
-                <CollectionSummary collection={collection} onClear={clearCollection} />
+                <CollectionSummary collection={collection} decks={decks} onClear={clearCollection} />
                 <FileUpload
                   onUpload={handleCollectionUpload}
                   label="Upload collection from Archidekt"
@@ -288,6 +326,12 @@ export default function Home() {
                 Your Decks
               </h2>
               <div className="space-y-4">
+                <DeckUrlInput onSubmit={handleDeckUrl} loading={urlLoading} />
+                <div className="relative flex items-center">
+                  <div className="flex-grow border-t border-gray-200 dark:border-gray-600"></div>
+                  <span className="flex-shrink mx-3 text-xs text-gray-400 dark:text-gray-500">or upload a file</span>
+                  <div className="flex-grow border-t border-gray-200 dark:border-gray-600"></div>
+                </div>
                 <FileUpload
                   onUpload={handleDeckUpload}
                   label="Upload a deck list"
@@ -302,6 +346,7 @@ export default function Home() {
                 <div className="text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 rounded p-3">
                   <p className="font-medium mb-1">Supported formats:</p>
                   <ul className="list-disc list-inside space-y-1">
+                    <li>Archidekt deck URL (public decks)</li>
                     <li>Archidekt CSV export</li>
                     <li>Standard deck list (1 Card Name)</li>
                     <li>MTGO format (1x Card Name)</li>

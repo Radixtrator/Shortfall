@@ -233,6 +233,35 @@ export function analyzeDeckOverlaps(collection: Collection, decks: Deck[]): Deck
   };
 }
 
+// Compute unallocated cards: collection minus all cards used in decks
+export function getUnallocatedCards(collection: Collection, decks: Deck[]): Card[] {
+  // Build a map of total quantities used across all decks
+  const deckUsage = new Map<string, number>();
+  for (const deck of decks) {
+    for (const card of deck.cards) {
+      const normalized = normalizeCardName(cleanCardName(card.name));
+      deckUsage.set(normalized, (deckUsage.get(normalized) || 0) + card.quantity);
+    }
+  }
+
+  // Subtract deck usage from collection
+  const result: Card[] = [];
+  for (const card of collection.cards) {
+    const normalized = normalizeCardName(card.name);
+    const used = deckUsage.get(normalized) || 0;
+    const remaining = card.quantity - used;
+    if (remaining > 0) {
+      result.push({ ...card, quantity: remaining });
+    }
+    // Mark as consumed so duplicates in collection are handled
+    if (used > 0) {
+      deckUsage.set(normalized, Math.max(0, used - card.quantity));
+    }
+  }
+
+  return result;
+}
+
 // Generate a unique ID
 export function generateId(): string {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
