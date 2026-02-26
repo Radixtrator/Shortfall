@@ -242,13 +242,13 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
   return (
     <div className="space-y-6">
       {/* Section Tabs */}
-      <div className="flex gap-2 border-b border-slate-800">
+      <div className="flex gap-2 border-b border-[#2a2a2a]">
         <button
           onClick={() => setActiveSection('overlapping')}
             className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
             activeSection === 'overlapping'
 	      ? 'border-orange-400 text-orange-300'
-              : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+              : 'border-transparent text-neutral-500 hover:text-neutral-200'
           }`}
         >
           Cards in Multiple Decks
@@ -261,8 +261,8 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
           className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
             activeSection === 'notOwned'
               ? 'border-purple-500 text-purple-600 dark:text-purple-400'
-              : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
-          }`}
+              : 'border-transparent text-neutral-500 hover:text-neutral-200'
+          >`}
         >
           Missing Cards
           <span className="ml-2 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-xs px-2 py-0.5 rounded-full">
@@ -280,7 +280,7 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
             onChange={(e) => setIncludeBasicLands(e.target.checked)}
             className="sr-only peer"
           />
-          <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-orange-400 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-orange-500"></div>
+          <div className="w-9 h-5 bg-[#333333] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-orange-400 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-[#555] after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-500"></div>
           <span className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300">
             Include Basic Lands
           </span>
@@ -324,9 +324,7 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value as typeof filter)}
-                  className="px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-sm"
-                >
-                  <option value="all">All Cards</option>
+                  className="px-3 py-1.5 border border-[#333333] rounded-md bg-[#191919] text-neutral-200 text-sm"
                   <option value="shortage">Cards with Shortage</option>
                   <option value="sufficient">Cards You Own</option>
                 </select>
@@ -336,9 +334,7 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                  className="px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-sm"
-                >
-                  <option value="shortage">Shortage (High to Low)</option>
+                  className="px-3 py-1.5 border border-[#333333] rounded-md bg-[#191919] text-neutral-200 text-sm"
                   <option value="decks">Number of Decks</option>
                   <option value="name">Card Name</option>
                 </select>
@@ -439,7 +435,7 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
                 className={`flex items-center gap-2 px-3 py-2 border rounded-lg text-sm font-medium transition-colors ${
                   selectedDecks.size > 0
                     ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300'
-                    : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                    : 'border-[#333333] bg-[#191919] text-neutral-300 hover:bg-[#222222]'
                 }`}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -466,8 +462,8 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
             </div>
             
             {showDeckFilter && (
-              <div className="absolute z-10 mt-2 w-72 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-3">
-                <div className="flex justify-between items-center mb-2 pb-2 border-b border-gray-200 dark:border-gray-700">
+              <div className="absolute z-10 mt-2 w-72 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg shadow-lg p-3">
+                <div className="flex justify-between items-center mb-2 pb-2 border-b border-[#2a2a2a]">
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Select Decks</span>
                   <div className="flex gap-2">
                     <button
@@ -488,7 +484,7 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
                   {allDeckNames.map(deckName => (
                     <label
                       key={deckName}
-                      className="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer"
+                      className="flex items-center gap-2 px-2 py-1.5 hover:bg-[#2a2a2a] rounded cursor-pointer"
                     >
                       <input
                         type="checkbox"
@@ -502,7 +498,7 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
                 </div>
                 <button
                   onClick={() => setShowDeckFilter(false)}
-                  className="mt-2 w-full py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded hover:bg-gray-200 dark:hover:bg-gray-600"
+                  className="mt-2 w-full py-1.5 bg-[#2a2a2a] text-neutral-300 text-sm rounded hover:bg-[#333333]"
                 >
                   Done
                 </button>
@@ -677,9 +673,9 @@ function CardImagePreview({ cardName, children }: { cardName: string; children: 
             }
           }}
         >
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-2 border border-gray-200 dark:border-gray-700">
+          <div className="bg-[#1a1a1a] rounded-lg shadow-2xl p-2 border border-[#2a2a2a]">
             {!imageLoaded && (
-              <div className="w-[223px] h-[310px] bg-gray-200 dark:bg-gray-700 rounded animate-pulse flex items-center justify-center">
+              <div className="w-[223px] h-[310px] bg-[#2a2a2a] rounded animate-pulse flex items-center justify-center">
                 <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
@@ -778,13 +774,13 @@ function CardOverlapItem({ card, priceMap }: { card: CardOverlap; priceMap?: Map
       </button>
       
       {isExpanded && (
-        <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="px-4 pb-4 border-t border-[#2a2a2a]">
           <div className="mt-3 space-y-2">
             <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Appears in:</p>
             {card.decks.map((deck, index) => (
               <div
                 key={index}
-                className="flex justify-between items-center text-sm bg-white dark:bg-gray-800 rounded px-3 py-2"
+                className="flex justify-between items-center text-sm bg-[#222222] rounded px-3 py-2"
               >
                 <span className="text-gray-700 dark:text-gray-300">{deck.deckName}</span>
                 <span className="text-gray-500 dark:text-gray-400">×{deck.quantity}</span>

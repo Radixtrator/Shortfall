@@ -57,7 +57,7 @@ export default function DeckList({ decks, onRemove, onRename, onReorder, onRefre
       {decks.map((deck, index) => (
         <div
           key={deck.id}
-          className="flex items-center gap-2 p-3 bg-slate-900/60 rounded-lg group border border-slate-800"
+          className="flex items-center gap-2 p-3 bg-[#222222] rounded-lg group border border-[#333333]"
         >
           {/* Reorder buttons */}
           <div className="flex flex-col gap-0.5">
@@ -95,7 +95,7 @@ export default function DeckList({ decks, onRemove, onRename, onReorder, onRefre
                     if (e.key === 'Enter') saveEdit();
                     if (e.key === 'Escape') cancelEdit();
                   }}
-                  className="flex-1 px-2 py-1 text-sm border border-gray-700 rounded bg-slate-950 text-slate-100 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="flex-1 px-2 py-1 text-sm border border-[#333333] rounded bg-[#111111] text-neutral-100 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   autoFocus
                 />
                 <button

@@ -40,7 +40,7 @@ export default function RootLayout({
           <div className="flex-1 flex flex-col">
             {children}
           </div>
-          <footer className="border-t border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur text-xs text-gray-600 dark:text-gray-400">
+          <footer className="border-t border-[#2a2a2a] bg-[#111111] text-xs text-neutral-400">
             <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
               <p>
                 Shortfall is an independent fan project and is not affiliated with, endorsed, or sponsored by Wizards of the Coast, Archidekt, or Scryfall.

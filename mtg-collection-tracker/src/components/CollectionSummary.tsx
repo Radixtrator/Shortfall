@@ -47,7 +47,7 @@ export default function CollectionSummary({ collection, decks, onClear }: Collec
   const unallocatedTotal = unallocated.reduce((sum, c) => sum + c.quantity, 0);
 
   return (
-    <div className="bg-slate-900/70 border border-slate-800 rounded-lg p-4">
+    <div className="bg-[#222222] border border-[#2a2a2a] rounded-lg p-4">
       <div className="flex items-center justify-between">
         <div>
           <h3 className="font-semibold text-gray-900 dark:text-white">Your Collection</h3>

@@ -49,8 +49,8 @@ export default function FileUpload({ onUpload, label, accept = '.csv,.txt', id }
     <div
       className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors cursor-pointer
         ${isDragging 
-      	  ? 'border-orange-400 bg-orange-500/10 dark:bg-orange-500/20' 
-	  : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
+          ? 'border-orange-400 bg-orange-500/10' 
+	  : 'border-[#333333] hover:border-[#555555]'
         }`}
       onDrop={handleDrop}
       onDragOver={handleDragOver}

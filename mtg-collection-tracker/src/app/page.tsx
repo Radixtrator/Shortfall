@@ -252,21 +252,21 @@ export default function Home() {
       )}
 
       {/* Header */}
-      <header className="bg-slate-950 shadow-sm border-b border-slate-800">
+      <header className="bg-[#111111] shadow-sm border-b border-[#2a2a2a]">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-slate-100">
+              <h1 className="text-2xl font-bold text-neutral-100">
                 Shortfall
               </h1>
-              <p className="text-sm text-slate-400 mt-1">
+              <p className="text-sm text-neutral-400 mt-1">
                 Find missing cards across your MTG decks
               </p>
             </div>
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setShowHelpModal(true)}
-                className="p-2 text-slate-400 hover:text-orange-400 transition-colors rounded-full hover:bg-slate-800/80"
+                className="p-2 text-neutral-400 hover:text-orange-400 transition-colors rounded-full hover:bg-[#2a2a2a]"
                 title="Help & Instructions"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -286,13 +286,13 @@ export default function Home() {
 
       {/* Tabs */}
       <div className="max-w-6xl mx-auto px-4 mt-6">
-        <div className="flex gap-1 bg-slate-900/80 rounded-lg p-1 w-fit border border-slate-800">
+        <div className="flex gap-1 bg-[#1a1a1a] rounded-lg p-1 w-fit border border-[#2a2a2a]">
           <button
             onClick={() => setActiveTab('upload')}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               activeTab === 'upload'
-                ? 'bg-slate-800 text-slate-100 shadow-sm'
-                : 'text-slate-400 hover:text-slate-100'
+                ? 'bg-[#2a2a2a] text-neutral-100 shadow-sm'
+                : 'text-neutral-400 hover:text-neutral-100'
             }`}
           >
             Upload Data
@@ -301,8 +301,8 @@ export default function Home() {
             onClick={() => setActiveTab('analysis')}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               activeTab === 'analysis'
-                ? 'bg-slate-800 text-slate-100 shadow-sm'
-                : 'text-slate-400 hover:text-slate-100'
+                ? 'bg-[#2a2a2a] text-neutral-100 shadow-sm'
+                : 'text-neutral-400 hover:text-neutral-100'
             }`}
           >
             Card Count Analysis
@@ -320,8 +320,8 @@ export default function Home() {
         {activeTab === 'upload' ? (
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Collection Section */}
-            <section className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+            <section className="bg-[#191919] rounded-xl shadow-sm border border-[#2a2a2a] p-6">
+              <h2 className="text-lg font-semibold text-neutral-100 mb-4">
                 Your Collection
               </h2>
               <div className="space-y-4">
@@ -331,7 +331,7 @@ export default function Home() {
                   label="Upload collection from Archidekt"
                   id="collection-upload"
                 />
-                <div className="text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 rounded p-3">
+                <div className="text-xs text-neutral-400 bg-[#222222] rounded p-3">
                   <p className="font-medium mb-1">How to export from Archidekt:</p>
                   <ol className="list-decimal list-inside space-y-1">
                     <li>Go to your collection on archidekt.com</li>
@@ -344,16 +344,16 @@ export default function Home() {
             </section>
 
             {/* Decks Section */}
-            <section className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+            <section className="bg-[#191919] rounded-xl shadow-sm border border-[#2a2a2a] p-6">
+              <h2 className="text-lg font-semibold text-neutral-100 mb-4">
                 Your Decks
               </h2>
               <div className="space-y-4">
                 <DeckUrlInput onSubmit={handleDeckUrl} loading={urlLoading} />
                 <div className="relative flex items-center">
-                  <div className="flex-grow border-t border-gray-200 dark:border-gray-600"></div>
-                  <span className="flex-shrink mx-3 text-xs text-gray-400 dark:text-gray-500">or upload a file</span>
-                  <div className="flex-grow border-t border-gray-200 dark:border-gray-600"></div>
+                  <div className="flex-grow border-t border-[#2a2a2a]"></div>
+                  <span className="flex-shrink mx-3 text-xs text-neutral-500">or upload a file</span>
+                  <div className="flex-grow border-t border-[#2a2a2a]"></div>
                 </div>
                 <FileUpload
                   onUpload={handleDeckUpload}
@@ -367,7 +367,7 @@ export default function Home() {
                   onReorder={reorderDecks}
                   onRefresh={refreshDeck}
                 />
-                <div className="text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 rounded p-3">
+                <div className="text-xs text-neutral-400 bg-[#222222] rounded p-3">
                   <p className="font-medium mb-1">Supported formats:</p>
                   <ul className="list-disc list-inside space-y-1">
                     <li>Archidekt deck URL (public decks)</li>
@@ -380,8 +380,8 @@ export default function Home() {
             </section>
           </div>
         ) : (
-          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
+          <section className="bg-[#191919] rounded-xl shadow-sm border border-[#2a2a2a] p-6">
+            <h2 className="text-lg font-semibold text-neutral-100 mb-6">
               Cards Appearing in Multiple Decks
             </h2>
             <OverlapAnalysis analysis={analysis} />
@@ -392,8 +392,8 @@ export default function Home() {
       {/* Deck Name Modal */}
       {showDeckNameModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-md w-full p-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-[#191919] rounded-xl shadow-xl max-w-md w-full p-6 border border-[#2a2a2a]">
+            <h3 className="text-lg font-semibold text-neutral-100 mb-4">
               Name Your Deck
             </h3>
             <input
@@ -401,7 +401,7 @@ export default function Home() {
               value={deckName}
               onChange={(e) => setDeckName(e.target.value)}
               placeholder="Enter deck name..."
-              className="w-full px-4 py-2 border border-gray-600 rounded-lg bg-slate-900 text-slate-100 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-[#333333] rounded-lg bg-[#111111] text-neutral-100 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               autoFocus
               onKeyDown={(e) => {
                 if (e.key === 'Enter') confirmDeckUpload();
@@ -430,14 +430,14 @@ export default function Home() {
       {/* Help Modal */}
       {showHelpModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex items-center justify-between">
+          <div className="bg-[#191919] rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-[#2a2a2a]">
+            <div className="sticky top-0 bg-[#191919] border-b border-[#2a2a2a] px-6 py-4 flex items-center justify-between">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                 How to Use Shortfall
               </h3>
               <button
                 onClick={() => setShowHelpModal(false)}
-                className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="p-2 text-neutral-400 hover:text-neutral-200 rounded-full hover:bg-[#2a2a2a]"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -510,9 +510,9 @@ export default function Home() {
                 <div className="text-gray-600 dark:text-gray-300 ml-7">
                   <ul className="space-y-2 text-sm">
                     <li><strong>Archidekt CSV</strong> — Full export with set codes, foil status, etc.</li>
-                    <li><strong>Standard deck list</strong> — <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded">1 Lightning Bolt</code></li>
-                    <li><strong>MTGO format</strong> — <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded">1x Lightning Bolt</code></li>
-                    <li><strong>Arena format</strong> — <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded">1 Lightning Bolt (STA) 42</code></li>
+                    <li><strong>Standard deck list</strong> — <code className="bg-[#2a2a2a] px-1 rounded">1 Lightning Bolt</code></li>
+                    <li><strong>MTGO format</strong> — <code className="bg-[#2a2a2a] px-1 rounded">1x Lightning Bolt</code></li>
+                    <li><strong>Arena format</strong> — <code className="bg-[#2a2a2a] px-1 rounded">1 Lightning Bolt (STA) 42</code></li>
                   </ul>
                 </div>
               </section>
@@ -555,7 +555,7 @@ export default function Home() {
               </section>
             </div>
 
-            <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-4">
+            <div className="border-t border-[#2a2a2a] px-6 py-4">
               <button
                 onClick={() => setShowHelpModal(false)}
                 className="w-full px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium"
@@ -568,7 +568,7 @@ export default function Home() {
       )}
 
       {/* Footer */}
-      <footer className="mt-12 border-t border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50">
+      <footer className="mt-12 border-t border-[#2a2a2a] bg-[#111111]">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
             <div className="flex items-center gap-2">
@@ -582,7 +582,7 @@ export default function Home() {
                 href="https://github.com/Radixtrator/Archidekt-Duplicate-Finder"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors flex items-center gap-1"
+                className="hover:text-neutral-200 transition-colors flex items-center gap-1"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
