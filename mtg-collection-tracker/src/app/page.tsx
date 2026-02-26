@@ -218,7 +218,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#05070b] via-[#0b1016] to-[#020617]">
+    <main className="min-h-screen bg-gradient-to-br from-[#020202] via-[#050505] to-[#111111]">
       {/* Notification Toast */}
       {notification && (
         <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-top-2 fade-in duration-300">
