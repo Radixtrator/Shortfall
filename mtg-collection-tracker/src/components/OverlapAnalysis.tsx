@@ -117,7 +117,7 @@ export default function OverlapAnalysis({ analysis }: OverlapAnalysisProps) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
         <p className="text-lg">No analysis available yet.</p>
-        <p className="text-sm mt-1">Upload your collection and at least 2 decks to see card overlaps.</p>
+        <p className="text-sm mt-1">Upload your collection and at least one deck to see card overlaps.</p>
       </div>
     );
   }
@@ -612,10 +612,12 @@ function CardImagePreview({ cardName, children }: { cardName: string; children: 
   const [showPreview, setShowPreview] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   
   const imageUrl = `https://api.scryfall.com/cards/named?exact=${encodeURIComponent(cardName)}&format=image&version=normal`;
 
   const handleMouseEnter = (e: React.MouseEvent) => {
+    if (isTouchDevice) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
@@ -644,15 +646,36 @@ function CardImagePreview({ cardName, children }: { cardName: string; children: 
       className="relative inline-block"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={() => {
-        setShowPreview(false);
-        setImageLoaded(false);
+        if (!isTouchDevice) {
+          setShowPreview(false);
+          setImageLoaded(false);
+        }
+      }}
+      onTouchStart={() => setIsTouchDevice(true)}
+      onClick={() => {
+        if (isTouchDevice) {
+          setShowPreview((prev) => {
+            if (prev) setImageLoaded(false);
+            return !prev;
+          });
+          // Position centered on screen for touch
+          const viewportWidth = window.innerWidth;
+          setPosition({ x: (viewportWidth - 250) / 2, y: 80 });
+        }
       }}
     >
       {children}
       {showPreview && (
         <div
-          className="fixed z-50 pointer-events-none"
+          className="fixed z-50"
           style={{ left: position.x, top: position.y }}
+          onClick={(e) => {
+            if (isTouchDevice) {
+              e.stopPropagation();
+              setShowPreview(false);
+              setImageLoaded(false);
+            }
+          }}
         >
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-2 border border-gray-200 dark:border-gray-700">
             {!imageLoaded && (

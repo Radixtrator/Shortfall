@@ -9,6 +9,7 @@ export interface Card {
   foil?: boolean;
   condition?: string;
   language?: string;
+  maybeboard?: boolean;
 }
 
 export interface Deck {
@@ -16,6 +17,7 @@ export interface Deck {
   name: string;
   cards: Card[];
   uploadedAt: Date;
+  archidektId?: string;
 }
 
 export interface Collection {

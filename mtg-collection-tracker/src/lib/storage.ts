@@ -11,13 +11,18 @@ export function saveCollection(collection: Collection): void {
 
 export function loadCollection(): Collection {
   if (typeof window !== 'undefined') {
-    const data = localStorage.getItem(COLLECTION_KEY);
-    if (data) {
-      const parsed = JSON.parse(data);
-      return {
-        ...parsed,
-        uploadedAt: parsed.uploadedAt ? new Date(parsed.uploadedAt) : null,
-      };
+    try {
+      const data = localStorage.getItem(COLLECTION_KEY);
+      if (data) {
+        const parsed = JSON.parse(data);
+        return {
+          ...parsed,
+          uploadedAt: parsed.uploadedAt ? new Date(parsed.uploadedAt) : null,
+        };
+      }
+    } catch (error) {
+      console.error('Failed to load collection from localStorage:', error);
+      localStorage.removeItem(COLLECTION_KEY);
     }
   }
   return { cards: [], uploadedAt: null };
@@ -31,13 +36,18 @@ export function saveDecks(decks: Deck[]): void {
 
 export function loadDecks(): Deck[] {
   if (typeof window !== 'undefined') {
-    const data = localStorage.getItem(DECKS_KEY);
-    if (data) {
-      const parsed = JSON.parse(data);
-      return parsed.map((deck: Deck) => ({
-        ...deck,
-        uploadedAt: new Date(deck.uploadedAt),
-      }));
+    try {
+      const data = localStorage.getItem(DECKS_KEY);
+      if (data) {
+        const parsed = JSON.parse(data);
+        return parsed.map((deck: Deck) => ({
+          ...deck,
+          uploadedAt: new Date(deck.uploadedAt),
+        }));
+      }
+    } catch (error) {
+      console.error('Failed to load decks from localStorage:', error);
+      localStorage.removeItem(DECKS_KEY);
     }
   }
   return [];

@@ -142,6 +142,7 @@ export default function Home() {
         name,
         cards,
         uploadedAt: new Date(),
+        archidektId: deckId,
       };
 
       const updatedDecks = [...decks, newDeck];
@@ -153,6 +154,28 @@ export default function Home() {
       showNotification('error', error instanceof Error ? error.message : 'Failed to fetch deck from Archidekt.');
     } finally {
       setUrlLoading(false);
+    }
+  };
+
+  const refreshDeck = async (id: string) => {
+    const deck = decks.find((d) => d.id === id);
+    if (!deck?.archidektId) return;
+
+    try {
+      const { name, cards } = await fetchArchidektDeck(deck.archidektId);
+      if (cards.length === 0) {
+        showNotification('error', 'No cards found when refreshing deck.');
+        return;
+      }
+      const updatedDecks = decks.map((d) =>
+        d.id === id ? { ...d, name, cards, uploadedAt: new Date() } : d
+      );
+      setDecks(updatedDecks);
+      saveDecks(updatedDecks);
+      showNotification('success', `Refreshed "${name}" — ${cards.length} cards`);
+    } catch (error) {
+      console.error('Error refreshing deck:', error);
+      showNotification('error', error instanceof Error ? error.message : 'Failed to refresh deck.');
     }
   };
 
@@ -342,6 +365,7 @@ export default function Home() {
                   onRemove={removeDeck} 
                   onRename={renameDeck}
                   onReorder={reorderDecks}
+                  onRefresh={refreshDeck}
                 />
                 <div className="text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 rounded p-3">
                   <p className="font-medium mb-1">Supported formats:</p>

@@ -15,6 +15,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Deckflict",
   description: "Find card conflicts across your Magic: The Gathering decks",
+  icons: {
+    icon: "/favicon.svg",
+  },
+  openGraph: {
+    title: "Deckflict",
+    description: "Find card conflicts and missing cards across your MTG decks. Track your collection, import from Archidekt, and export buy lists.",
+    type: "website",
+    siteName: "Deckflict",
+  },
 };
 
 export default function RootLayout({

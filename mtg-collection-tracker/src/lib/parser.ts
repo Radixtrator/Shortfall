@@ -234,11 +234,13 @@ export function analyzeDeckOverlaps(collection: Collection, decks: Deck[]): Deck
 }
 
 // Compute unallocated cards: collection minus all cards used in decks
+// Maybeboard cards are excluded — they don't count as "in use"
 export function getUnallocatedCards(collection: Collection, decks: Deck[]): Card[] {
-  // Build a map of total quantities used across all decks
+  // Build a map of total quantities used across all decks (excluding maybeboard)
   const deckUsage = new Map<string, number>();
   for (const deck of decks) {
     for (const card of deck.cards) {
+      if (card.maybeboard) continue;
       const normalized = normalizeCardName(cleanCardName(card.name));
       deckUsage.set(normalized, (deckUsage.get(normalized) || 0) + card.quantity);
     }

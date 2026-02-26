@@ -45,8 +45,11 @@ interface ArchidektDeckResponse {
 
 /**
  * Fetch a deck from the Archidekt API via our proxy route.
+ * Maybeboard cards are always included but tagged with maybeboard: true.
  */
-export async function fetchArchidektDeck(deckId: string): Promise<{ name: string; cards: Card[] }> {
+export async function fetchArchidektDeck(
+  deckId: string,
+): Promise<{ name: string; cards: Card[] }> {
   const response = await fetch(`/api/archidekt/${deckId}`);
 
   if (!response.ok) {
@@ -59,18 +62,17 @@ export async function fetchArchidektDeck(deckId: string): Promise<{ name: string
   const data: ArchidektDeckResponse = await response.json();
 
   const cards: Card[] = data.cards
-    .filter((c) => {
-      // Skip "Maybeboard" cards – they aren't actually in the deck
+    .map((c) => {
       const cats = c.categories.map((cat) => cat.toLowerCase());
-      return !cats.includes('maybeboard');
-    })
-    .map((c) => ({
-      name: c.card.oracleCard.name,
-      quantity: c.quantity,
-      setCode: c.card.edition?.editioncode || undefined,
-      setName: c.card.edition?.name || undefined,
-      collectorNumber: c.card.collectorNumber || undefined,
-    }));
+      return {
+        name: c.card.oracleCard.name,
+        quantity: c.quantity,
+        setCode: c.card.edition?.editioncode || undefined,
+        setName: c.card.edition?.name || undefined,
+        collectorNumber: c.card.collectorNumber || undefined,
+        maybeboard: cats.includes('maybeboard') || undefined,
+      };
+    });
 
   return { name: data.name, cards };
 }
