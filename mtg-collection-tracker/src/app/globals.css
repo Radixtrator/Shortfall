@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Archidekt-inspired dark background and light foreground */
+  --background: #080b11;
+  --foreground: #e5e7eb;
 }
 
 @theme inline {
@@ -14,8 +15,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #05070b;
+    --foreground: #e5e7eb;
   }
 }
 
