@@ -4,7 +4,7 @@
 
 A privacy-focused web app to track your Magic: The Gathering collection and identify card conflicts across multiple decks. Upload your collection from Archidekt and instantly see which cards you need to proxy or purchase more copies of.
 
-**Live App**: [deckflict.vercel.app](https://deckflict.vercel.app)
+**Live App**: [https://shortfall-mtg.vercel.app](https://shortfall-mtg.vercel.app/)
 
 ---
 
