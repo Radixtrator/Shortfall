@@ -10,6 +10,7 @@ import DeckList from '@/components/DeckList';
 import OverlapAnalysis from '@/components/OverlapAnalysis';
 import CollectionSummary from '@/components/CollectionSummary';
 import { extractDeckId, fetchArchidektDeck } from '@/lib/archidekt';
+import { extractMoxfieldDeckId, fetchMoxfieldDeck } from '@/lib/moxfield';
 
 export default function Home() {
   const [collection, setCollection] = useState<Collection>({ cards: [], uploadedAt: null });
@@ -154,37 +155,55 @@ export default function Home() {
   };
 
   const handleDeckUrl = async (url: string) => {
-    const deckId = extractDeckId(url);
-    if (!deckId) {
-      showNotification('error', 'Invalid Archidekt URL or deck ID. Expected format: https://archidekt.com/decks/12345');
+    const archidektId = extractDeckId(url);
+    const moxfieldId = extractMoxfieldDeckId(url);
+
+    if (!archidektId && !moxfieldId) {
+      showNotification('error', 'Invalid deck URL. Supported: Archidekt or Moxfield deck URLs.');
       return;
     }
 
     setUrlLoading(true);
     try {
-      const { name, cards, commanderName } = await fetchArchidektDeck(deckId);
+      let name: string;
+      let cards: import('@/types').Card[];
+      let commanderName: string | undefined;
+
+      if (moxfieldId) {
+        const result = await fetchMoxfieldDeck(moxfieldId);
+        name = result.name;
+        cards = result.cards;
+        commanderName = result.commanderName;
+      } else {
+        const result = await fetchArchidektDeck(archidektId!);
+        name = result.name;
+        cards = result.cards;
+        commanderName = result.commanderName;
+      }
 
       if (cards.length === 0) {
         showNotification('error', 'No cards found in the deck.');
         return;
       }
 
+      const source = moxfieldId ? 'Moxfield' : 'Archidekt';
       const newDeck: Deck = {
         id: generateId(),
         name,
         cards,
         uploadedAt: new Date(),
-        archidektId: deckId,
+        archidektId: archidektId && !moxfieldId ? archidektId : undefined,
+        moxfieldId: moxfieldId || undefined,
         commanderName,
       };
 
       const updatedDecks = [...decks, newDeck];
       setDecks(updatedDecks);
       saveDecks(updatedDecks);
-      showNotification('success', `Imported "${name}" with ${cards.length} cards from Archidekt`);
+      showNotification('success', `Imported "${name}" with ${cards.length} cards from ${source}`);
     } catch (error) {
-      console.error('Error fetching Archidekt deck:', error);
-      showNotification('error', error instanceof Error ? error.message : 'Failed to fetch deck from Archidekt.');
+      console.error('Error fetching deck:', error);
+      showNotification('error', error instanceof Error ? error.message : 'Failed to fetch deck.');
     } finally {
       setUrlLoading(false);
     }
@@ -192,10 +211,25 @@ export default function Home() {
 
   const refreshDeck = async (id: string) => {
     const deck = decks.find((d) => d.id === id);
-    if (!deck?.archidektId) return;
+    if (!deck?.archidektId && !deck?.moxfieldId) return;
 
     try {
-      const { name, cards, commanderName } = await fetchArchidektDeck(deck.archidektId);
+      let name: string;
+      let cards: import('@/types').Card[];
+      let commanderName: string | undefined;
+
+      if (deck.moxfieldId) {
+        const result = await fetchMoxfieldDeck(deck.moxfieldId);
+        name = result.name;
+        cards = result.cards;
+        commanderName = result.commanderName;
+      } else {
+        const result = await fetchArchidektDeck(deck.archidektId!);
+        name = result.name;
+        cards = result.cards;
+        commanderName = result.commanderName;
+      }
+
       if (cards.length === 0) {
         showNotification('error', 'No cards found when refreshing deck.');
         return;
@@ -435,7 +469,7 @@ export default function Home() {
                 <div className="text-xs text-neutral-400 bg-[#222222] rounded p-3">
                   <p className="font-medium mb-1">Supported formats:</p>
                   <ul className="list-disc list-inside space-y-1">
-                    <li>Archidekt deck URL (public decks)</li>
+                    <li>Archidekt or Moxfield deck URL (public decks)</li>
                     <li>Archidekt CSV export</li>
                     <li>Standard deck list (1 Card Name)</li>
                     <li>MTGO format (1x Card Name)</li>
@@ -535,7 +569,7 @@ export default function Home() {
                 <div className="text-gray-600 dark:text-gray-300 space-y-2 ml-9">
                   <p>Export your collection from Archidekt:</p>
                   <ol className="list-decimal list-inside space-y-1 text-sm">
-                    <li>Go to <a href="https://archidekt.com" target="_blank" rel="noopener noreferrer" className="text-orange-300 hover:underline">archidekt.com</a> and sign in</li>
+                    <li>Go to <a href="https://archidekt.com" target="_blank" rel="noopener noreferrer" className="text-orange-300 hover:underline">archidekt.com</a> or <a href="https://www.moxfield.com" target="_blank" rel="noopener noreferrer" className="text-orange-300 hover:underline">moxfield.com</a> and sign in</li>
                     <li>Navigate to your Collection page</li>
                     <li>Click the <strong>⋯</strong> menu or export button</li>
                     <li>Select <strong>Export as CSV</strong></li>
@@ -551,9 +585,9 @@ export default function Home() {
                   Add Your Decks
                 </h4>
                 <div className="text-gray-600 dark:text-gray-300 space-y-2 ml-9">
-                  <p>Upload deck lists from Archidekt or other sources:</p>
+                  <p>Upload deck lists from Archidekt, Moxfield, or other sources:</p>
                   <ol className="list-decimal list-inside space-y-1 text-sm">
-                    <li>Open a deck on Archidekt</li>
+                    <li>Open a deck on Archidekt or Moxfield</li>
                     <li>Click <strong>Export</strong> → <strong>Copy to Clipboard</strong> or download as CSV/TXT</li>
                     <li>Paste or upload the deck list to Shortfall</li>
                     <li>Give your deck a name when prompted</li>

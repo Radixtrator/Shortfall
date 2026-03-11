@@ -25,7 +25,7 @@ export default function DeckUrlInput({ onSubmit, loading }: DeckUrlInputProps) {
           type="text"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          placeholder="https://archidekt.com/decks/12345"
+          placeholder="https://archidekt.com/decks/12345 or https://moxfield.com/decks/..."
           disabled={loading}
           className="flex-1 px-3 py-2 text-sm border border-[#333333] rounded-lg bg-[#111111] text-neutral-100 placeholder-neutral-500 focus:ring-2 focus:ring-orange-500 focus:border-transparent disabled:opacity-50"
         />
@@ -53,7 +53,7 @@ export default function DeckUrlInput({ onSubmit, loading }: DeckUrlInputProps) {
         </button>
       </div>
       <p className="text-xs text-gray-500 dark:text-gray-400">
-        Paste an Archidekt deck URL or deck ID
+        Paste an Archidekt or Moxfield deck URL
       </p>
     </form>
   );

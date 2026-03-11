@@ -18,6 +18,7 @@ export interface Deck {
   cards: Card[];
   uploadedAt: Date;
   archidektId?: string;
+  moxfieldId?: string;
   commanderName?: string;
 }
 

@@ -110,7 +110,7 @@ function DeckMenu({
             </div>
           ) : (
             <>
-              {deck.archidektId && (
+              {(deck.archidektId || deck.moxfieldId) && (
                 <button
                   onClick={() => { setOpen(false); onRefresh(deck.id); }}
                   disabled={refreshing}
